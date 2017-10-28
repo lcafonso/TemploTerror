@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Item.h"
-
+#include "Weapon.h"
+#include "Armor.h"
 
 class Inventory
 {
@@ -13,19 +13,22 @@ private:
 
 	// Functions
 	void expand();
-	void initialize(const int from);
+	void initialize(const int from = 0);
 
 
 public:
 	Inventory();
 	virtual ~Inventory();
+	Inventory(const Inventory &obj);
 
 	// Operators
+	Item& operator[](const int index);
 
 	// Functions
 	void addIten(const Item &item);
 	void removeItem(int index);
-
+	inline int size() const { return this->nrOfItems; };
+	
 	inline void debugPrint() const 
 	{
 		for (size_t i = 0; i < this->nrOfItems; i++)

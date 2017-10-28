@@ -7,6 +7,10 @@ Character::Character()
 	this->xPos = 0;
 	this->yPos = 0;
 
+	this->distanceTravelled = 0;
+
+	this->gold = 0;
+
 	this->name = "";
 	this->level = 0;
 	this->exp = 0;
@@ -24,6 +28,7 @@ Character::Character()
 	this->damageMin = 0;
 	this->damageMax = 0;
 	this->defence = 0;
+	this->accuracy = 0;
 	this->luck = 0;
 	this->startPoints = 0;
 	this->skillPoints = 0;
@@ -38,8 +43,12 @@ Character::~Character()
 // Functions
 void Character::initialize(const std::string name)
 {
-	this->xPos = 0;
-	this->yPos = 0;
+	this->xPos = 0.0;
+	this->yPos = 0.0;
+
+	this->distanceTravelled = 0;
+
+	this->gold = 100;
 
 	this->name = name;
 	this->level = 1;
@@ -54,14 +63,16 @@ void Character::initialize(const std::string name)
 	this->dexterity = 5;
 	this->intelligence = 5;
 
-	this->hp = 10;
-	this->hpMax = 10;
-	this->stamina = 10;
-	this->staminaMax = 10;
-	this->damageMin = 2;
-	this->damageMax = 4;
-	this->defence = 1;
-	this->luck = 0;
+	this->hpMax = (this->vitality * 2) + (this->strength / 2);
+	this->hp = hpMax;
+	this->staminaMax = this->vitality + (this->strength/2) + (this->dexterity/3);
+	this->stamina = staminaMax;
+	
+	this->damageMin = this->strength;
+	this->damageMax = this->strength+2;
+	this->defence = this->dexterity +  (this->intelligence/2);
+	this->accuracy = (this->dexterity / 2);
+	this->luck = this->intelligence;
 
 	this->startPoints = 0;
 	this->skillPoints = 0;
@@ -86,6 +97,7 @@ void Character::printStatus() const
 	std::cout << "Stamina: " << this->stamina << " / " << staminaMax << std::endl;
 	std::cout << "Damage: " << this->damageMin << " - " << this->damageMax << std::endl;
 	std::cout << "Defence: " << this->defence << std::endl;
+	std::cout << "Accurancy: " << this->accuracy << std::endl;
 	std::cout << "Luck: " << this->luck << std::endl;
 	std::cout << std::endl;
 

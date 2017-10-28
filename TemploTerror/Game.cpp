@@ -1,6 +1,5 @@
 
 #include "Game.h"
-#include <fstream>
 
 
 
@@ -18,12 +17,19 @@ Game::~Game()
 {
 }
 
-void Game::initGame()
-{
-	createNewCharacter();
-}
 
 // Functions
+void Game::initGame()
+{
+
+
+	createNewCharacter();
+	Puzzle p("lel.txt");
+	std::cout << p.getAsString() << "\n" ;
+
+}
+
+
 void Game::mainMenu()
 {
 	cout << "=== MAIN MENU ===" << endl;
@@ -43,6 +49,14 @@ void Game::mainMenu()
 	{
 	case 0:
 		playing = false;
+		break;
+	case 1:
+		break;
+	case 2:
+		break;
+	case 3:
+		break;
+	case 4:
 		break;
 	case 5:
 		characters[activeCharacter].printStatus();
@@ -95,5 +109,15 @@ void Game::saveCharacters()
 
 void Game::loadCharacters()
 {
+
+}
+
+void Game::travel()
+{
+	this->characters[activeCharacter].travel();
+
+	Event ev;
+
+	ev.generateEvent(this->characters[activeCharacter]);
 
 }

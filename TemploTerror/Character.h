@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Inventory.h"
+#include "Enemy.h"
 
 class Character
 {
@@ -19,6 +20,7 @@ public:
 	// Accessors
 	inline const double& getX() const { return this->xPos; }
 	inline const double& getY() const { return this->xPos; }
+	inline const int& getDistanceTravel() const { return this->distanceTravelled; }
 	inline const std::string& getName() const { return this->name; }
 	inline const int& getLevel() const { return this->level; }
 	inline const int& getExp() const { return this->exp; }
@@ -29,12 +31,25 @@ public:
 	inline const int& getDamageMin() const { return this->damageMin; }
 	inline const int& getDamageMax() const { return this->damageMax; }
 	inline const int& getDefence() const { return this->defence; }
+	inline const int& getAccuracy() const { return this->accuracy; }
 
 	// Modifiers
+	inline void setDistanceTravel(const int& distance) { this->distanceTravelled = distance; }
+	inline void travel() { this->distanceTravelled++ ; }
 
 private:
 	double xPos;
 	double yPos;
+
+	int distanceTravelled;
+
+	Inventory inventory;
+	Weapon weapon;
+	Armor armor_head;
+	Armor armor_chest;
+	Armor armor_arms;
+	Armor armor_legs;
+	int gold;
 
 	std::string name;
 	int level;
@@ -53,6 +68,7 @@ private:
 	int damageMin;
 	int damageMax;
 	int defence;
+	int accuracy;
 	int luck;
 
 	int startPoints;

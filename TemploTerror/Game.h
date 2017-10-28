@@ -2,8 +2,11 @@
 
 
 #include "Functions.h"
-#include "Character.h"
+#include "Event.h"
+
 #include <vector>
+#include <ctime>
+
 
 using namespace std;
 
@@ -21,7 +24,7 @@ public:
 	void createNewCharacter();
 	void saveCharacters();
 	void loadCharacters();
-
+	void travel();
 
 	// Accessors
 	bool getPlaying() const {
