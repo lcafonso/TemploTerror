@@ -44,6 +44,7 @@ void Event::puzzleEncounter(Character & character)
 	bool completed = false;
 	int userAns = 0;
 	int chances = 3;
+	int gainExp = (rand() % (chances * (character.getLevel() * rand() % 10 + 1)))+1;
 
 	Puzzle puzzle("puzzles/1.txt");
 	
@@ -60,6 +61,8 @@ void Event::puzzleEncounter(Character & character)
 		{
 			completed = true;
 			// GIVE USER EXP ETC AND CONTINUE
+			character.gainExp(gainExp);
+			std::cout << "You Gained " << gainExp << "EXP! \n\n";
 		}
 
 
@@ -67,10 +70,10 @@ void Event::puzzleEncounter(Character & character)
 
 	if (completed)
 	{
-		std::cout << "Congratulation you succeded! \n";
+		std::cout << "Congratulation you succeded! \n\n";
 	}
 	else
 	{
-		std::cout << "You failed! \n";
+		std::cout << "You failed! \n\n";
 	}
 }

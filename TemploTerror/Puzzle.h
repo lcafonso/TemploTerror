@@ -21,7 +21,7 @@ public:
 	std::string getAsString();
 
 	// Accessors
-	const int& getCorrectAns()const { return this->correctAnswer; };
+	inline const int& getCorrectAns()const { return this->correctAnswer; };
 	// Modifiers
 };
 
