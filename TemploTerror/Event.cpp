@@ -1,7 +1,5 @@
 #include "Event.h"
 
-
-
 Event::Event()
 {
 	this->nrOfEvents = 2;
@@ -38,8 +36,41 @@ void Event::generateEvent(Character &character)
 //Different events
 void Event::enemyEncounter(Character & character)
 {
+
 }
 
 void Event::puzzleEncounter(Character & character)
 {
+	bool completed = false;
+	int userAns = 0;
+	int chances = 3;
+
+	Puzzle puzzle("puzzles/1.txt");
+	
+	while (!completed && chances > 0)
+	{
+		chances--;
+		std::cout << puzzle.getAsString() << "\n";
+
+		std::cout << "Your Answer: ";
+		std::cin >> userAns;
+		std::cout << "\n";
+
+		if (puzzle.getCorrectAns() == userAns)
+		{
+			completed = true;
+			// GIVE USER EXP ETC AND CONTINUE
+		}
+
+
+	}
+
+	if (completed)
+	{
+		std::cout << "Congratulation you succeded! \n";
+	}
+	else
+	{
+		std::cout << "You failed! \n";
+	}
 }

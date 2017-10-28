@@ -19,8 +19,9 @@ public:
 
 	// Functions
 	std::string getAsString();
-	// Accessors
 
+	// Accessors
+	const int& getCorrectAns()const { return this->correctAnswer; };
 	// Modifiers
 };
 
