@@ -18,8 +18,7 @@ public:
 	std::string getAsString() const;
 
 	// Accessors
-	inline const double& getX() const { return this->xPos; }
-	inline const double& getY() const { return this->xPos; }
+
 	inline const int& getDistanceTravel() const { return this->distanceTravelled; }
 	inline const std::string& getName() const { return this->name; }
 	inline const int& getLevel() const { return this->level; }
@@ -37,9 +36,8 @@ public:
 	inline void setDistanceTravel(const int& distance) { this->distanceTravelled = distance; }
 	inline void travel() { this->distanceTravelled++ ; }
 	inline void gainExp(const int& exp) { this->exp += exp;  }
+
 private:
-	double xPos;
-	double yPos;
 
 	int distanceTravelled;
 

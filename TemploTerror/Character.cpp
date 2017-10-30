@@ -4,9 +4,6 @@
 
 Character::Character()
 {
-	this->xPos = 0;
-	this->yPos = 0;
-
 	this->distanceTravelled = 0;
 
 	this->gold = 0;
@@ -43,9 +40,6 @@ Character::~Character()
 // Functions
 void Character::initialize(const std::string name)
 {
-	this->xPos = 0.0;
-	this->yPos = 0.0;
-
 	this->distanceTravelled = 0;
 
 	this->gold = 100;
@@ -128,9 +122,7 @@ void Character::levelUp()
 
 std::string Character::getAsString() const
 {
-	return  std::to_string(xPos) + " " +
-		std::to_string(yPos) + " " + 
-		name + " " +
+	return name + " " +
 		std::to_string(level) + " " +
 		std::to_string(exp) + " " +
 		std::to_string(strength) + " " +

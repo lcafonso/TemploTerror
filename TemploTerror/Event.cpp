@@ -44,12 +44,13 @@ void Event::puzzleEncounter(Character & character)
 	bool completed = false;
 	int userAns = 0;
 	int chances = 3;
-	int gainExp = (rand() % (chances * (character.getLevel() * rand() % 10 + 1)))+1;
+	int gainExp = (rand() % (chances * (character.getLevel() * rand() % 10 + 1)))+10;
 
 	Puzzle puzzle("puzzles/1.txt");
 	
 	while (!completed && chances > 0)
 	{
+		std::cout << "you have " << chances << " chances\n\n";
 		chances--;
 		std::cout << puzzle.getAsString() << "\n";
 
