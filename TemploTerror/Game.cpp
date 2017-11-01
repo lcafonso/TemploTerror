@@ -88,9 +88,9 @@ void Game::mainMenu()
 
 void Game::createNewCharacter()
 {
-	std::string name = "";
-	std::cout << "Enter name for character: ";
-	getline(std::cin, name);
+	string name = "";
+	cout << "Enter name for character: ";
+	getline(cin, name);
 
 	characters.push_back(Character());
 	activeCharacter = characters.size() - 1;
@@ -114,7 +114,74 @@ void Game::saveCharacters()
 
 void Game::loadCharacters()
 {
+	ifstream inFile(fileName);
+	
+	this->characters.clear();
 
+	string name = "";
+	int gold = 0;
+	int distanceTravelled = 0;
+	int level = 0;
+	int exp = 0;
+	int strength = 0;
+	int vitality = 0;
+	int dexterity = 0;
+	int intelligence = 0;
+	int hp = 0;
+	int stamina = 0;
+	int startPoints = 0;
+	int skillPoints = 0;
+
+	string line = "";
+	stringstream str;
+
+	if (inFile.is_open())
+	{
+		while(getline(inFile, line))
+		{
+			str.str(line);
+			str >> name;
+			str >> distanceTravelled;
+			str >> gold;
+			str >> level;
+			str >> exp;
+			str >> strength;
+			str >> vitality;
+			str >> dexterity;
+			str >> intelligence;
+			str >> hp;
+			str >> stamina;
+			str >> startPoints;
+			str >> skillPoints;
+
+			Character temp(name,
+				distanceTravelled,
+				gold,
+				level,
+				exp,
+				strength,
+				vitality,
+				dexterity,
+				intelligence,
+				hp,
+				stamina,
+				startPoints,
+				skillPoints);
+
+			this->characters.push_back(Character(temp));
+
+			cout << "Character " << name << " loaded!" << endl;
+
+			str.clear();
+		}
+	}
+
+	inFile.close();
+
+	if (this->characters.size() <= 0)
+	{
+		throw "ERROR! NO CHARACTERS LOADED OR EMPTY FILE!";
+	}
 }
 
 void Game::travel()

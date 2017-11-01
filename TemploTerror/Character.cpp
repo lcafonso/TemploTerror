@@ -31,6 +31,37 @@ Character::Character()
 	this->skillPoints = 0;
 }
 
+Character::Character(string name, int distanceTravelled, int gold, int level, int exp, int strength, int vitality, int dexterity, int intelligence, int hp, int stamina, int startPoints, int skillPoints)
+{
+	this->distanceTravelled = distanceTravelled;
+
+	this->gold = gold;
+
+	this->name = name;
+	this->level = level;
+	this->exp = exp;
+	this->expNext = 0;
+
+	this->strength = strength;
+	this->vitality = vitality;
+	this->dexterity = dexterity;
+	this->intelligence = intelligence;
+
+	this->hp = hp;
+	this->hpMax = 0;
+	this->stamina = stamina;
+	this->staminaMax = 0;
+	this->damageMin = 0;
+	this->damageMax = 0;
+	this->defence = 0;
+	this->accuracy = 0;
+	this->luck = 0;
+	this->startPoints = startPoints;
+	this->skillPoints = skillPoints;
+
+	this->updateStatus();
+}
+
 
 Character::~Character()
 {
@@ -38,7 +69,7 @@ Character::~Character()
 
 
 // Functions
-void Character::initialize(const std::string name)
+void Character::initialize(const string name)
 {
 	this->distanceTravelled = 0;
 
@@ -75,25 +106,25 @@ void Character::initialize(const std::string name)
 
 void Character::printStatus() const
 {
-	std::cout << "= Character Sheet =" << std::endl;
-	std::cout << std::endl;
-	std::cout << "Name: " << this->name << std::endl;
-	std::cout << "Level: " << this->level << std::endl;
-	std::cout << "Exp: " << this->exp << std::endl;
-	std::cout << "Exp to next level: " << this->expNext << std::endl;
-	std::cout  << std::endl;
-	std::cout << "Strength: " << this->strength << std::endl;
-	std::cout << "Vitality: " << this->vitality << std::endl;
-	std::cout << "Dexterity: " << this->dexterity << std::endl;
-	std::cout << "intelligence: " << this->intelligence << std::endl;
-	std::cout  << std::endl;
-	std::cout << "HP: " << this->hp << " / " <<  this->hpMax << std::endl;
-	std::cout << "Stamina: " << this->stamina << " / " << staminaMax << std::endl;
-	std::cout << "Damage: " << this->damageMin << " - " << this->damageMax << std::endl;
-	std::cout << "Defence: " << this->defence << std::endl;
-	std::cout << "Accurancy: " << this->accuracy << std::endl;
-	std::cout << "Luck: " << this->luck << std::endl;
-	std::cout << std::endl;
+	cout << "= Character Sheet =" << endl;
+	cout << endl;
+	cout << "Name: " << this->name << endl;
+	cout << "Level: " << this->level << endl;
+	cout << "Exp: " << this->exp << endl;
+	cout << "Exp to next level: " << this->expNext << endl;
+	cout  << endl;
+	cout << "Strength: " << this->strength << endl;
+	cout << "Vitality: " << this->vitality << endl;
+	cout << "Dexterity: " << this->dexterity << endl;
+	cout << "intelligence: " << this->intelligence << endl;
+	cout  << endl;
+	cout << "HP: " << this->hp << " / " <<  this->hpMax << endl;
+	cout << "Stamina: " << this->stamina << " / " << staminaMax << endl;
+	cout << "Damage: " << this->damageMin << " - " << this->damageMax << endl;
+	cout << "Defence: " << this->defence << endl;
+	cout << "Accurancy: " << this->accuracy << endl;
+	cout << "Luck: " << this->luck << endl;
+	cout << endl;
 
 }
 
@@ -111,27 +142,46 @@ void Character::levelUp()
 		this->startPoints++;
 		this->skillPoints++;
 
-		std::cout << "You are now level " << this->level << "!\n\n";
+		cout << "You are now level " << this->level << "!\n\n";
 
 	}
 	else 
 	{
-		std::cout << "Not enough EXP! \n\n";
+		cout << "Not enough EXP! \n\n";
 	}
 }
 
-std::string Character::getAsString() const
+string Character::getAsString() const
 {
 	return name + " " +
-		std::to_string(level) + " " +
-		std::to_string(exp) + " " +
-		std::to_string(strength) + " " +
-		std::to_string(vitality) + " " +
-		std::to_string(dexterity) + " " +
-		std::to_string(intelligence) + " " +
-		std::to_string(hp) + " " +
-		std::to_string(stamina) + " " +
-		std::to_string(startPoints) + " " +
-		std::to_string(skillPoints) ;
+		to_string(distanceTravelled) + " " +
+		to_string(gold) + " " +
+		to_string(level) + " " +
+		to_string(exp) + " " +
+		to_string(strength) + " " +
+		to_string(vitality) + " " +
+		to_string(dexterity) + " " +
+		to_string(intelligence) + " " +
+		to_string(hp) + " " +
+		to_string(stamina) + " " +
+		to_string(startPoints) + " " +
+		to_string(skillPoints) ;
+}
+
+void Character::updateStatus()
+{
+	this->expNext =
+		static_cast<int>((50 / 3)*((pow(this->level, 3) -
+			6 * pow(this->level, 2)) +
+			(17 * this->level) - 12)) + 100;
+
+
+	this->hpMax = (this->vitality * 2) + (this->strength / 2);
+	this->staminaMax = this->vitality + (this->strength / 2) + (this->dexterity / 3);
+	this->damageMin = this->strength;
+	this->damageMax = this->strength + 2;
+	this->defence = this->dexterity + (this->intelligence / 2);
+	this->accuracy = (this->dexterity / 2);
+	this->luck = this->intelligence;
 }
 

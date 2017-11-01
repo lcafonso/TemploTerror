@@ -15,7 +15,7 @@ void Event::generateEvent(Character &character)
 {
 	int i = rand() % this->nrOfEvents ;
 
-	switch (1)
+	switch (i)
 	{
 	case 0:
 		//Enemy encounter
@@ -63,7 +63,7 @@ void Event::puzzleEncounter(Character & character)
 			completed = true;
 			// GIVE USER EXP ETC AND CONTINUE
 			character.gainExp(gainExp);
-			std::cout << "You Gained " << gainExp << "EXP! \n\n";
+			std::cout << "You Gained " << gainExp << " EXP! \n\n";
 		}
 
 
