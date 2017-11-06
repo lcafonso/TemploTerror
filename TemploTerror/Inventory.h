@@ -3,6 +3,8 @@
 #include "Weapon.h"
 #include "Armor.h"
 
+using namespace std;
+
 class Inventory
 {
 private:

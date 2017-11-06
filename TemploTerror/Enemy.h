@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <string>
 
+using namespace std;
+
 class Enemy
 {
 private:

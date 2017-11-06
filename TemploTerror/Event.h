@@ -4,6 +4,8 @@
 #include "Puzzle.h"
 #include "Character.h"
 
+using namespace std;
+
 class Event
 {
 private:

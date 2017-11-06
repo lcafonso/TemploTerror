@@ -30,6 +30,11 @@ void Game::initGame()
 
 void Game::mainMenu()
 {
+
+	cout << "ENTER to continue...." << "\n";
+	cin.get();
+	if (system("cls")) system("clear");
+
 	if (this->characters[activeCharacter].getExp() >= 
 		this->characters[activeCharacter].getExpNext())
 	{
@@ -47,6 +52,19 @@ void Game::mainMenu()
 	cout << "8: Load Character" << endl;
 	cout << endl << "Choice:";
 	cin >> choice;
+
+	while (cin.fail())
+	{
+		cout << "Faulty input!" << "\n";
+		cin.clear();
+		cin.ignore(100, '\n');
+
+		cout << endl << "Choice: ";
+		cin >> choice;
+	}
+
+	cin.ignore(100, '\n');
+	cout << endl;
 
 	switch (choice)
 	{
