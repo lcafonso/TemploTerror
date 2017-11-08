@@ -27,11 +27,11 @@ Character::Character()
 	this->defence = 0;
 	this->accuracy = 0;
 	this->luck = 0;
-	this->startPoints = 0;
+	this->statPoints = 0;
 	this->skillPoints = 0;
 }
 
-Character::Character(string name, int distanceTravelled, int gold, int level, int exp, int strength, int vitality, int dexterity, int intelligence, int hp, int stamina, int startPoints, int skillPoints)
+Character::Character(string name, int distanceTravelled, int gold, int level, int exp, int strength, int vitality, int dexterity, int intelligence, int hp, int stamina, int statPoints, int skillPoints)
 {
 	this->distanceTravelled = distanceTravelled;
 
@@ -56,7 +56,7 @@ Character::Character(string name, int distanceTravelled, int gold, int level, in
 	this->defence = 0;
 	this->accuracy = 0;
 	this->luck = 0;
-	this->startPoints = startPoints;
+	this->statPoints = statPoints;
 	this->skillPoints = skillPoints;
 
 	this->updateStatus();
@@ -99,7 +99,7 @@ void Character::initialize(const string name)
 	this->accuracy = (this->dexterity / 2);
 	this->luck = this->intelligence;
 
-	this->startPoints = 0;
+	this->statPoints = 0;
 	this->skillPoints = 0;
 
 }
@@ -139,8 +139,10 @@ void Character::levelUp()
 				6 * pow(this->level, 2)) +
 				(17 * this->level) - 12)) + 100;
 
-		this->startPoints++;
+		this->statPoints++;
 		this->skillPoints++;
+
+		this->updateStatus();
 
 		cout << "You are now level " << this->level << "!\n\n";
 
@@ -164,7 +166,7 @@ string Character::getAsString() const
 		to_string(intelligence) + " " +
 		to_string(hp) + " " +
 		to_string(stamina) + " " +
-		to_string(startPoints) + " " +
+		to_string(statPoints) + " " +
 		to_string(skillPoints) ;
 }
 
@@ -183,5 +185,27 @@ void Character::updateStatus()
 	this->defence = this->dexterity + (this->intelligence / 2);
 	this->accuracy = (this->dexterity / 2);
 	this->luck = this->intelligence;
+}
+
+void Character::addStat(int stat, int value)
+{
+	switch (stat)
+	{
+	case 0:
+		this->strength += value;
+		break;
+	case 1:
+		this->vitality += value;
+		break;
+	case 2:
+		this->dexterity += value;
+		break;
+	case 3:
+		this->intelligence += value;
+		break;
+	default:
+		cout << "No SUCH STAT! \n";
+		break;
+	}
 }
 

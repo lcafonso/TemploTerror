@@ -20,7 +20,7 @@ public:
 		int intelligence,
 		int hp,
 		int stamina,
-		int startPoints,
+		int statPoints,
 		int skillPoints);
 
 	virtual ~Character();
@@ -33,6 +33,7 @@ public:
 	void levelUp();
 	string getAsString() const;
 	void updateStatus();
+	void addStat(int stat, int value);
 
 	// Accessors
 
@@ -41,6 +42,7 @@ public:
 	inline const int& getLevel() const { return this->level; }
 	inline const int& getExp() const { return this->exp; }
 	inline const int& getExpNext() const { return this->expNext; }
+	inline const int& getStatPoints() const { return this->statPoints;  }
 	inline const int& getHp() const { return this->hp; }
 	inline const int& getHpMax() const { return this->hpMax; }
 	inline const int& getStamina() const { return this->stamina; }
@@ -86,7 +88,7 @@ private:
 	int accuracy;
 	int luck;
 
-	int startPoints;
+	int statPoints;
 	int skillPoints;
 
 

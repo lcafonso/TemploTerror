@@ -51,7 +51,7 @@ void Game::mainMenu()
 	cout << "7: Save Character" << endl;
 	cout << "8: Load Character" << endl;
 	cout << endl << "Choice:";
-	cin >> choice;
+	cin >> this->choice;
 
 	while (cin.fail())
 	{
@@ -60,13 +60,13 @@ void Game::mainMenu()
 		cin.ignore(100, '\n');
 
 		cout << endl << "Choice: ";
-		cin >> choice;
+		cin >> this->choice;
 	}
 
 	cin.ignore(100, '\n');
 	cout << endl;
 
-	switch (choice)
+	switch (this->choice)
 	{
 	case 0: // quit
 		playing = false;
@@ -77,7 +77,7 @@ void Game::mainMenu()
 	case 2: // shop
 		break;
 	case 3: // level up
-		this->characters[activeCharacter].levelUp();
+		this->levelUpCharacter();
 		break;
 	case 4: // rest
 		break;
@@ -115,6 +115,54 @@ void Game::createNewCharacter()
 	characters[activeCharacter].initialize(name);
 }
 
+void Game::levelUpCharacter()
+{
+	this->characters[activeCharacter].levelUp();
+
+	if(this->characters[activeCharacter].getStatPoints() > 0)
+	{ 
+		cout << "You have stat points to alocate!\n";
+		cout << "Stat to upgrade: \n";
+		cout << "0: Strength \n";
+		cout << "1: Vitality \n";
+		cout << "2: Dextrerity \n";
+		cout << "3: Intelligence \n";
+
+		cin >> this->choice;
+
+		while (cin.fail() || this->choice > 3)
+		{
+			cout << "Faulty input!\n";
+			cin.clear();
+			cin.ignore(100, '\n');
+
+			cout << "Stat to upgrade: \n";
+			cin >> this->choice;
+		}
+
+		cin.ignore(100, '\n');
+		cout << "\n";
+
+		switch (this->choice)
+		{
+		case 0:
+			this->characters[activeCharacter].addStat(0, 1);
+			break;
+		case 1:
+			this->characters[activeCharacter].addStat(1, 1);
+			break;
+		case 2:
+			this->characters[activeCharacter].addStat(2, 1);
+			break;
+		case 3:
+			this->characters[activeCharacter].addStat(3, 1);
+			break;
+		default:
+			break;
+		}
+	}
+}
+
 void Game::saveCharacters()
 {
 	ofstream outFile(fileName);
@@ -147,7 +195,7 @@ void Game::loadCharacters()
 	int intelligence = 0;
 	int hp = 0;
 	int stamina = 0;
-	int startPoints = 0;
+	int statPoints = 0;
 	int skillPoints = 0;
 
 	string line = "";
@@ -169,7 +217,7 @@ void Game::loadCharacters()
 			str >> intelligence;
 			str >> hp;
 			str >> stamina;
-			str >> startPoints;
+			str >> statPoints;
 			str >> skillPoints;
 
 			Character temp(name,
@@ -183,7 +231,7 @@ void Game::loadCharacters()
 				intelligence,
 				hp,
 				stamina,
-				startPoints,
+				statPoints,
 				skillPoints);
 
 			this->characters.push_back(Character(temp));
