@@ -189,23 +189,31 @@ void Character::updateStatus()
 
 void Character::addStat(int stat, int value)
 {
-	switch (stat)
-	{
-	case 0:
-		this->strength += value;
-		break;
-	case 1:
-		this->vitality += value;
-		break;
-	case 2:
-		this->dexterity += value;
-		break;
-	case 3:
-		this->intelligence += value;
-		break;
-	default:
-		cout << "No SUCH STAT! \n";
-		break;
+	if (this->statPoints < value)
+		cout << "ERROR! Not enough Satpoints! \n";
+	else
+	{ 
+		switch (stat)
+		{
+		case 0:
+			this->strength += value;
+			break;
+		case 1:
+			this->vitality += value;
+			break;
+		case 2:
+			this->dexterity += value;
+			break;
+		case 3:
+			this->intelligence += value;
+			break;
+		default:
+			cout << "No SUCH STAT! \n";
+			break;
+		}
+
+		this->statPoints -= value;
 	}
+
 }
 
