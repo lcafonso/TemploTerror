@@ -38,6 +38,7 @@ public:
 	void levelUpCharacter();
 	void saveCharacters();
 	void loadCharacters();
+	void selectCharacters();
 	void travel();
 
 	// Accessors

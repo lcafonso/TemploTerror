@@ -23,13 +23,6 @@ void Game::initGame()
 {
 	createNewCharacter();
 
-	dArr<int> ints;
-
-	for (size_t i = 0; i < 20; i++)
-	{
-		ints.push(i);
-		cout << ints[i] << "\n";
-	}
 }
 
 
@@ -45,7 +38,11 @@ void Game::mainMenu()
 	{
 		std::cout << "Level up Available! \n\n";
 	}
-	cout << "=== MAIN MENU ===" << endl;
+	cout << "=== MAIN MENU ===\n\n";
+	cout << "= Active character: " << 
+		this->characters[activeCharacter].getName() << " Nr: " <<
+		this->activeCharacter+1 << "/" <<
+		this->characters.size() << " =\n\n";
 	cout << "0: Quit" << endl;
 	cout << "1: Travel" << endl;
 	cout << "2: Shop" << endl;
@@ -55,6 +52,7 @@ void Game::mainMenu()
 	cout << "6: Create new Character" << endl;
 	cout << "7: Save Character" << endl;
 	cout << "8: Load Character" << endl;
+	cout << "9: Select Character" << endl;
 	cout << endl << "Choice:";
 	cin >> this->choice;
 
@@ -90,7 +88,6 @@ void Game::mainMenu()
 		characters[activeCharacter].printStatus();
 		break;
 	case 6: // crteate new character
-		cin.ignore();
 		createNewCharacter();
 		saveCharacters();
 		break;
@@ -100,7 +97,9 @@ void Game::mainMenu()
 	case 8: // load character
 		loadCharacters();
 		break;
-
+	case 9: // select character
+		selectCharacters();
+		break;
 	default:
 		break;
 	}
@@ -114,6 +113,16 @@ void Game::createNewCharacter()
 	string name = "";
 	cout << "Enter name for character: ";
 	getline(cin, name);
+
+	for (size_t i = 0; i < this->characters.size(); i++)
+	{
+		while (name == this->characters[i].getName())
+		{
+			cout << "\nError! Character already exists!\n";
+			cout << "Enter name for character: ";
+			getline(cin, name);
+		}
+	}
 
 	characters.push_back(Character());
 	activeCharacter = characters.size() - 1;
@@ -255,12 +264,18 @@ void Game::loadCharacters()
 	}
 }
 
+void Game::selectCharacters()
+{
+	cout << "Select Character:\n"
+
+}
+
 void Game::travel()
 {
 	this->characters[activeCharacter].travel();
 
 	Event ev;
 
-	ev.generateEvent(this->characters[activeCharacter]);
+	ev.generateEvent(this->characters[activeCharacter], this->enemies);
 
 }
