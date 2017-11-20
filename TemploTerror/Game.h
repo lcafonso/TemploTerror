@@ -3,7 +3,6 @@
 
 #include "Functions.h"
 #include "Event.h"
-#include "dArr.h"
 
 #include <vector>
 #include <ctime>
@@ -13,6 +12,19 @@ using namespace std;
 
 class Game
 {
+private:
+	int choice;
+	bool playing;
+
+	//Character related
+	int activeCharacter;
+	vector<Character> characters;
+	string fileName;
+
+	//Enemies
+	dArr<Enemy> enemies;
+
+
 public:
 	Game();
 	virtual ~Game();
@@ -37,13 +49,6 @@ public:
 	// Modifiers
 
 
-private:
-	int choice;
-	bool playing;
 
-	//Character related
-	int activeCharacter;
-	vector<Character> characters;
-	string fileName;
 };
 

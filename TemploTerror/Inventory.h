@@ -27,9 +27,10 @@ public:
 	Item& operator[](const int index);
 
 	// Functions
+	inline int size() const { return this->nrOfItems; };
 	void addIten(const Item &item);
 	void removeItem(int index);
-	inline int size() const { return this->nrOfItems; };
+	
 	
 	inline void debugPrint() const 
 	{

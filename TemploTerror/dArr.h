@@ -109,7 +109,7 @@ void dArr<T>::expand()
 {
 	this->cap *= 2;
 
-	T* *tempArr = new T*[this->nrOfEl];
+	T **tempArr = new T*[this->cap];
 
 	for (size_t i = 0; i < this->nrOfEl; i++)
 	{

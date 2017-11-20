@@ -27,7 +27,7 @@ void Game::initGame()
 
 	for (size_t i = 0; i < 20; i++)
 	{
-		ints.push(rand() % 10);
+		ints.push(i);
 		cout << ints[i] << "\n";
 	}
 }
