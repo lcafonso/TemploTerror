@@ -180,4 +180,5 @@ void dArr<T>::remove(const unsigned index, bool ordered)
 		
 		this->arr[--this->nrOfEl] = nullptr;
 	}
+
 }

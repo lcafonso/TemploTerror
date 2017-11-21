@@ -41,6 +41,7 @@ public:
 	void selectCharacters();
 	void travel();
 
+
 	// Accessors
 	bool getPlaying() const {
 		return this->playing;
