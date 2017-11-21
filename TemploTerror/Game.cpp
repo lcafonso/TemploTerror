@@ -266,8 +266,35 @@ void Game::loadCharacters()
 
 void Game::selectCharacters()
 {
-	cout << "Select Character:\n"
+	cout << "Select Character: \n\n";
 
+	for (size_t i = 0; i < this->characters.size(); i++)
+	{
+		cout << "Index: " << i << " = " <<
+			this->characters[i].getName() <<
+			" Level: " << this->characters[i].getLevel() << "\n";
+	}
+
+	cout << "\nChoice: ";
+	
+	cin >> this->choice;
+
+	while (cin.fail() || this->choice >= this->characters.size() || this->choice < 0)
+	{
+		cout << "Faulty input!\n";
+		cin.clear();
+		cin.ignore(100, '\n');
+
+		cout << "Select Character: \n";
+		cin >> this->choice;
+	}
+
+	cin.ignore(100, '\n');
+	cout << "\n";
+
+	this->activeCharacter = this->choice;
+
+	cout << this->characters[this->activeCharacter].getName() << " is SELECTED! \n\n";
 }
 
 void Game::travel()
