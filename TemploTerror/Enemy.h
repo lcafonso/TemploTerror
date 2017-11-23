@@ -26,7 +26,7 @@ public:
 	// Functions
 	inline bool isAlive() const { return this->hp > 0; }
 	std::string getAsString() const;
-	inline void takeDamage(int damage) { this->hp -= damage; };
+	void takeDamage(int damage);
 	inline int getDamage() const { return rand() % this->damageMax - this->damageMin; };
 	inline int getExp() const { return this->level * 100; };
 

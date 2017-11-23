@@ -30,3 +30,14 @@ std::string Enemy::getAsString() const
 		"Drop Chance: " + std::to_string(this->dropChange) + "\n";
 	
 }
+
+void Enemy::takeDamage(int damage)
+{
+	this->hp -= damage;
+
+	if (this->hp <= 0)
+	{
+		this->hp = 0;
+	}
+
+}
