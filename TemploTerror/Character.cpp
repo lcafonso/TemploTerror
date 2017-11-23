@@ -223,6 +223,7 @@ void Character::addStat(int stat, int value)
 
 void Character::takeDamage(const int damage)
 {
+
 	this->hp -= damage;
 
 	if (this->hp <= 0)
