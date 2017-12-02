@@ -17,7 +17,6 @@ Inventory::~Inventory()
 		delete this->itemArr[i];
 	}
 	delete[] itemArr;
-
 }
 
 Inventory::Inventory(const Inventory &obj)

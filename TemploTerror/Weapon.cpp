@@ -9,6 +9,7 @@ Weapon::Weapon(int damageMin, int damageMax, std::string name, int level, int bu
 
 Weapon::~Weapon()
 {
+
 }
 
 Weapon * Weapon::clone() const

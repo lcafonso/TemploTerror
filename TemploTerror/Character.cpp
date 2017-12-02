@@ -230,6 +230,5 @@ void Character::takeDamage(const int damage)
 	{
 		this->hp = 0;
 	}
-
 }
 

@@ -1,7 +1,6 @@
 #include "Puzzle.h"
 
 
-
 Puzzle::Puzzle(std::string fileName)
 {
 	std::ifstream inFile(fileName);

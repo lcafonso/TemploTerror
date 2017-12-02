@@ -106,8 +106,6 @@ void Game::mainMenu()
 		break;
 	}
 
-
-
 }
 
 void Game::createNewCharacter()

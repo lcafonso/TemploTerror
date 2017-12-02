@@ -3,7 +3,6 @@
 Event::Event()
 {
 	this->nrOfEvents = 2;
-
 }
 
 

@@ -24,6 +24,8 @@ public:
 
 	// Accessors
 	inline const int& getCorrectAns()const { return this->correctAnswer; };
+	
 	// Modifiers
+
 };
 

@@ -1,7 +1,6 @@
 #include "Armor.h"
 
 
-
 Armor::Armor(int type, int defence, std::string name, int level, int buyValue, int sellValue, int rarity)
 	: Item(name, level, buyValue, sellValue, rarity)
 {
