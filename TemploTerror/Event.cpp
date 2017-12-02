@@ -123,7 +123,7 @@ void Event::enemyEncounter(Character & character, dArr<Enemy>& enemies)
 						<< enemies[i].getHp() << "/" 
 						<< enemies[i].getHpMax() << "\n";
 				}
-
+				
 				cout << "\nChoice: ";
 				cin >> choice;
 
