@@ -47,18 +47,24 @@ void Event::enemyEncounter(Character & character, dArr<Enemy>& enemies)
 	else
 		playerTurn = false;
 
+	// end condition
 	bool escape = false;
 	bool playerDefeated = false;
 	bool enemiesDefeated = false;
 
-	int nrOfEnemies = rand() % 5;
-
+	// enemies
+	int nrOfEnemies = rand() % 5 + 1;
+	
 	for (size_t i = 0; i < nrOfEnemies; i++)
 	{
 		enemies.push(Enemy(character.getLevel()));
 	}
 	
-
+	// battle variables
+	int attackRoll = 0;
+	int defendRoll = 0;
+	int damage = 0;
+	int gainExp = 0;
 
 
 	while (!escape && !playerDefeated && !enemiesDefeated)
@@ -103,14 +109,71 @@ void Event::enemyEncounter(Character & character, dArr<Enemy>& enemies)
 			//Move
 			switch (choice)
 			{
-			case 0:
+			case 0: // escape
 				escape = true;
 				break;
-			case 1:
+			case 1: // attack
+
+				//Select enemy
+				cout << "Select enemy: \n\n";
+				for (size_t i = 0; i < enemies.size(); i++)
+				{
+					cout << i << ": " 
+						<< "Level: " << enemies[i].getLevel() << " - "
+						<< enemies[i].getHp() << "/" 
+						<< enemies[i].getHpMax() << "\n";
+				}
+
+				cout << "\nChoice: ";
+				cin >> choice;
+
+				while (cin.fail() || choice > 3 || choice < 0)
+				{
+					if (system("cls")) system("clear");
+
+					cout << "Faulty input!\n";
+					cin.clear();
+					cin.ignore(100, '\n');
+
+					cout << "Select enemy: \n\n";
+					cout << "Choice: \n";
+					cin >> choice;
+				}
+
+				cin.ignore(100, '\n');
+				cout << "\n";
+
+				attackRoll = rand() % 100 + 1;
+
+				if (attackRoll > 50) // hit
+				{
+					cout << "HIT! \n\n";
+
+					damage = character.getDamage();
+					enemies[choice].takeDamage(damage);
+
+					cout << "Damage: " << damage << "!\n\n";
+
+					if (!enemies[choice].isAlive())
+					{ 
+						cout << "Enemy DEFEATED! \n\n";
+						gainExp = enemies[choice].getExp();
+						character.gainExp(gainExp);
+						cout << "EXP gained: " << gainExp << "\n\n";
+						enemies.remove(choice);
+					}
+					
+
+				}
+				else // miss
+				{
+					cout << "MISS! \n\n";
+				}
+
 				break;
-			case 2:
+			case 2: // defend
 				break;
-			case 3:
+			case 3: // item
 				break;
 			default:
 				break;
