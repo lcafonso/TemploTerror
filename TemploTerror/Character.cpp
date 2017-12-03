@@ -31,7 +31,12 @@ Character::Character()
 	this->skillPoints = 0;
 }
 
-Character::Character(string name, int distanceTravelled, int gold, int level, int exp, int strength, int vitality, int dexterity, int intelligence, int hp, int stamina, int statPoints, int skillPoints)
+Character::Character(string name, int distanceTravelled, 
+	int gold, int level, 
+	int exp, int strength, 
+	int vitality, int dexterity, 
+	int intelligence, int hp, 
+	int stamina, int statPoints, int skillPoints)
 {
 	this->distanceTravelled = distanceTravelled;
 
@@ -92,11 +97,10 @@ void Character::initialize(const string name)
 	this->hp = hpMax;
 	this->staminaMax = this->vitality + (this->strength/2) + (this->dexterity/3);
 	this->stamina = staminaMax;
-	
 	this->damageMin = this->strength;
 	this->damageMax = this->strength+2;
 	this->defence = this->dexterity +  (this->intelligence/2);
-	this->accuracy = (this->dexterity / 2);
+	this->accuracy = (this->dexterity / 2) + this->intelligence;
 	this->luck = this->intelligence;
 
 	this->statPoints = 0;

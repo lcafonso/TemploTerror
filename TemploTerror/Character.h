@@ -7,6 +7,42 @@ using namespace std;
 
 class Character
 {
+private:
+
+	int distanceTravelled;
+
+	Inventory inventory;
+	Weapon weapon;
+	Armor armor_head;
+	Armor armor_chest;
+	Armor armor_arms;
+	Armor armor_legs;
+	int gold;
+
+	string name;
+	int level;
+	int exp;
+	int expNext;
+
+	int strength;
+	int vitality;
+	int dexterity;
+	int intelligence;
+
+	int hp;
+	int hpMax;
+	int stamina;
+	int staminaMax;
+	int damageMin;
+	int damageMax;
+	int defence;
+	int accuracy;
+	int luck;
+
+	int statPoints;
+	int skillPoints;
+
+
 public:
 	Character();
 	Character(string name, 
@@ -59,40 +95,6 @@ public:
 	inline void gainExp(const int& exp) { this->exp += exp;  }
 	void takeDamage(const int damage);
 	
-private:
-
-	int distanceTravelled;
-
-	Inventory inventory;
-	Weapon weapon;
-	Armor armor_head;
-	Armor armor_chest;
-	Armor armor_arms;
-	Armor armor_legs;
-	int gold;
-
-	string name;
-	int level;
-	int exp;
-	int expNext;
-
-	int strength;
-	int vitality;
-	int dexterity;
-	int intelligence; 
-
-	int hp;
-	int hpMax;
-	int stamina;
-	int staminaMax;
-	int damageMin;
-	int damageMax;
-	int defence;
-	int accuracy;
-	int luck;
-
-	int statPoints;
-	int skillPoints;
 
 };
 

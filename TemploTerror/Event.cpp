@@ -56,15 +56,17 @@ void Event::enemyEncounter(Character & character, dArr<Enemy>& enemies)
 	
 	for (size_t i = 0; i < nrOfEnemies; i++)
 	{
-		enemies.push(Enemy(character.getLevel()));
+		enemies.push(Enemy(character.getLevel()+rand() % 3));
 	}
 	
 	// battle variables
-	int attackRoll = 0;
-	int defendRoll = 0;
 	int damage = 0;
 	int gainExp = 0;
-
+	int playerTotal = 0;
+	int enemyTotal = 0;
+	int combatTotal = 0;
+	int combatRollPlayer = 0;
+	int combatRollEnemy = 0;
 
 	while (!escape && !playerDefeated && !enemiesDefeated)
 	{
@@ -118,9 +120,10 @@ void Event::enemyEncounter(Character & character, dArr<Enemy>& enemies)
 				for (size_t i = 0; i < enemies.size(); i++)
 				{
 					cout << i << ": " 
-						<< "Level: " << enemies[i].getLevel() << " - "
-						<< enemies[i].getHp() << "/" 
-						<< enemies[i].getHpMax() << "\n";
+						<< "Level: " << enemies[i].getLevel() << " - " << 
+						"HP: " << enemies[i].getHp() << "/" << enemies[i].getHpMax() << " - " <<
+						"Defence: " << enemies[i].getDefence() << " - " <<
+						"Accuracy: " << enemies[i].getAccuracy() << "\n";
 				}
 				
 				cout << "\nChoice: ";
@@ -142,9 +145,26 @@ void Event::enemyEncounter(Character & character, dArr<Enemy>& enemies)
 				cin.ignore(100, '\n');
 				cout << "\n";
 
-				attackRoll = rand() % 100 + 1;
+				//Attack roll 
+				combatTotal = enemies[choice].getDefence() + character.getAccuracy();
+				enemyTotal = enemies[choice].getDefence() / (double)combatTotal * 100;
+				playerTotal = character.getAccuracy() / (double)combatTotal * 100;
 
-				if (attackRoll > 50) // hit
+				combatRollPlayer = rand() % playerTotal + 1;
+				combatRollEnemy = rand() % enemyTotal + 1;
+
+				/* for debug only
+				cout << combatTotal << "\n";
+				cout << enemyTotal << "\n";
+				cout << playerTotal << "\n";
+				cout << combatRollPlayer << "\n";
+				cout << combatRollEnemy << "\n";
+				*/
+
+				cout << "Player roll: " << combatRollPlayer << "\n";
+				cout << "Enemy roll:  " << combatRollEnemy << "\n\n";
+
+				if (combatRollPlayer > combatRollEnemy) // hit
 				{
 					cout << "HIT! \n\n";
 
