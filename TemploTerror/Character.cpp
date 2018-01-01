@@ -82,30 +82,31 @@ void Character::initialize(const string name)
 
 	this->name = name;
 	this->level = 1;
-	this->exp = 0;
-	this->expNext = 
+	this->exp = 100;
+	/*this->expNext = 
 		static_cast<int>((50 / 3)*((pow(this->level, 3) -
 			6 * pow(this->level, 2)) +
-			(17 * this->level) - 12)) + 100;
+			(17 * this->level) - 12)) + 100;*/
 
 	this->strength = 5;
 	this->vitality = 5;
 	this->dexterity = 5;
 	this->intelligence = 5;
 
-	this->hpMax = (this->vitality * 2) + (this->strength / 2);
-	this->hp = hpMax;
-	this->staminaMax = this->vitality + (this->strength/2) + (this->dexterity/3);
-	this->stamina = staminaMax;
-	this->damageMin = this->strength;
-	this->damageMax = this->strength+2;
-	this->defence = this->dexterity +  (this->intelligence/2);
-	this->accuracy = (this->dexterity / 2) + this->intelligence;
-	this->luck = this->intelligence;
+	//this->hpMax = (this->vitality * 2) + (this->strength / 2);
+	//this->hp = hpMax;
+	//this->staminaMax = this->vitality + (this->strength/2) + (this->dexterity/3);
+	//this->stamina = staminaMax;
+	//this->damageMin = this->strength;
+	//this->damageMax = this->strength+2;
+	//this->defence = this->dexterity +  (this->intelligence/2);
+	//this->accuracy = (this->dexterity / 2) + this->intelligence;
+	//this->luck = this->intelligence;
 
 	this->statPoints = 0;
 	this->skillPoints = 0;
 
+	this->updateStatus();
 }
 
 void Character::printStatus() const
@@ -176,18 +177,20 @@ string Character::getAsString() const
 
 void Character::updateStatus()
 {
-	this->expNext =
-		static_cast<int>((50 / 3)*((pow(this->level, 3) -
-			6 * pow(this->level, 2)) +
-			(17 * this->level) - 12)) + 100;
+	this->expNext = static_cast<int>(
+		(50 / 3)*((pow(this->level, 3) 
+			- 6 * pow(this->level, 2)) 
+			+ (17 * this->level) - 12)) + 100;
 
 
 	this->hpMax = (this->vitality * 2) + (this->strength / 2);
+	/*this->hp = hpMax;*/
 	this->staminaMax = this->vitality + (this->strength / 2) + (this->dexterity / 3);
+	this->stamina = staminaMax;
 	this->damageMin = this->strength;
 	this->damageMax = this->strength + 2;
 	this->defence = this->dexterity + (this->intelligence / 2);
-	this->accuracy = (this->dexterity / 2);
+	this->accuracy = (this->dexterity / 2) + this->intelligence;
 	this->luck = this->intelligence;
 }
 
